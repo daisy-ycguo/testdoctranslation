@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:wadl="http://wadl.dev.java.net/2009/02"
+  version="5.0-extension RackBook-2.0"
+  xml:id="api.openstack.org">
+  <info>
+    <title>OpenStack APIs</title>
+    <copyright>
+      <year>2010-2012</year>
+    </copyright>
+    <legalnotice role="apache2">
+      <para/>
+    </legalnotice>
+  </info>
+  <preface xml:id="Overview">
+    <title>OpenStack API Reference</title>
+
+    <para>The OpenStack system has several key projects that are
+      separate installations but can work together depending on your
+      cloud needs: OpenStack Compute, OpenStack Object Storage,
+      OpenStack Identity Service, and OpenStack Image Service.</para>
+
+    <para>This page covers the basics for working with your OpenStack
+      cloud through the Compute API and Image API after authorizing with
+      the Identity Service API. You can then build a cloud by launching
+      images and assigning metadata to instances, all through an
+      API. Refer to the <link
+        xlink:href="http://docs.openstack.org/api/quick-start/content/">API Quick Start
+        Guide</link> for details about using the APIs referenced here, and
+      go to <link
+        xlink:href="http://docs.openstack.org/api/">docs.openstack.org/api</link>
+      for specifications of each API.
+    </para>
+  </preface>
+  <chapter xml:id="identity">
+    <title>Identity</title>
+    <para>With the Identity API, you obtain a token that lasts 24 hours so you can gain access to the Compute API. The version of the Identity API is 2.0.</para>
+    <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+      <wadl:resource href="identity.wadl#tokens" >
+        <wadl:method href="#authenticate"/>
+      </wadl:resource>
+      <wadl:resource href="identity.wadl#tenants" >
+        <wadl:method href="#listTenants"/>
+      </wadl:resource>
+    </wadl:resources>
+  </chapter>
+  <chapter xml:id="compute">
+    <title>Compute</title>
+    <para>With the Compute API, you launch virtual machines based on
+      the images uploaded to the system. You can reboot the server
+      when needed, resize it larger or smaller, and connect to the
+      server securely through SSH once it is started. The v1.1 API is
+      identical to the v2 API.</para>
+    <wadl:resources
+      href="os-compute-1.1.wadl"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+  </chapter>
+  <chapter xml:id="compute-ext">
+    <title>Compute API Extensions</title>
+    <para>An extension adds capabilities to an API beyond those
+      defined in the core API. The introduction of new features, MIME
+      types, actions, states, headers, parameters, and resources can
+      all be accomplished by means of extensions to the core API. You
+      can query the Compute API to find out which extensions are
+      available with a GET request to v1.1/extensions.</para>
+    <section xml:id="ext-os-disk-config">
+      <title>Disk Config</title>
+      <para>Extend servers and images with a diskConfig attribute.</para>
+      <wadl:resources
+        href="ext/os-disk-config.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-rescue">
+      <title>Server Rescue</title>
+      <para>Rescue and unrescue a server.</para>
+      <wadl:resources
+        href="ext/os-rescue.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-console-output">
+      <title>Server Console Output</title>
+      <para>Get the output from a server's console log.</para>
+      <wadl:resources
+        href="ext/os-console-output.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-consoles">
+      <title>Server VNC Console</title>
+      <para>Gain access to a VNC console for a specific server.</para>
+      <wadl:resources
+        href="ext/os-consoles.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-server-start-stop">
+      <title>Server Start/Stop</title>
+      <para>Start and stop a server.</para>
+      <wadl:resources
+        href="os-server-start-stop.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-deferred-delete">
+      <title>Server Force Delete/Restore</title>
+      <para>
+          When Nova is deployed with deferred delete on, use these actions
+          to restore or force the deletion of a server.
+      </para>
+      <wadl:resources
+        href="ext/os-deferred-delete.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-floating-ip-addresses">
+      <title>Floating IPs</title>
+      <para>
+        The Floating IPs extension enables assigning and allocation of
+        floating IP addresses to instances running in an OpenStack cloud.
+      </para>
+      <wadl:resources
+        href="os-floating-ips.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-floating-ip-pools">
+      <title>Floating IP Pools</title>
+      <para>Manage groups of Floating IPs.</para>
+      <wadl:resources
+        href="ext/os-floating-ip-pools.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-floating-ip-dns">
+      <title>Floating IP DNS</title>
+      <para>
+        The Floating IP DNS extension provides an interface for
+        managing DNS records associated with IP addresses allocated
+        by the Floating Ips extension. Requests are dispatched to a
+        DNS driver selected at startup.
+      </para>
+      <wadl:resources
+        href="ext/os-floating-ip-dns.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-networks">
+      <title>Networks</title>
+      <para>
+        The Networks extension allows you to view and delete networks. It
+        also provides an action to disassociate a network from a project
+        if you are using vlan mode.
+      </para>
+      <wadl:resources
+        href="ext/os-networks.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-scheduler-hints">
+      <title>Scheduler Hints</title>
+      <para>
+        Provide information directly to the scheduler when creating a server.
+      </para>
+      <wadl:resources
+        href="ext/os-scheduler-hints.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-keypairs">
+      <title>Keypairs</title>
+      <para>Generate, import and delete SSH keys..</para>
+      <wadl:resources
+        href="ext/os-keypairs.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-security-groups">
+      <title>Security Groups</title>
+      <para>Create, modify and delete security groups and rules.</para>
+      <wadl:resources
+        href="ext/os-security-groups.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-cloudpipe">
+      <title>Cloudpipe</title>
+      <para>Manage virtual vpns for projects.</para>
+      <wadl:resources
+        href="ext/os-cloudpipe.wadl"
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-hosts">
+      <title>Hosts</title>
+      <para>Manage physical hosts.</para>
+      <wadl:resources 
+        href="ext/os-hosts.wadl" 
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-os-flavormanage">
+      <title>Flavor Management</title>
+      <para>Create and delete flavors.</para>
+      <wadl:resources 
+        href="ext/os-flavormanage.wadl" 
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+    <section xml:id="ext-flavorextradata">
+      <title>Flavors - Extra Data</title>
+      <para>
+        Allow extra attributes to be returned with flavor objects. This includes
+        'swap', 'rxtx_factor' and 'OS-FLV-EXT-DATA:ephemeral'.
+      </para>
+      <wadl:resources 
+        href="os-flavorextradata.wadl" 
+        xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+    </section>
+  </chapter>
+  <chapter xml:id="image">
+    <title>Image</title>
+    <para>With the Image API, you load images for use at launch time
+      by the Compute API. Some cloud implementations do not expose
+      this API and offer pre-tested images only. You can also assign
+      metadata to images with this API. </para>
+    <wadl:resources
+      href="os-image-1.0.wadl"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+  </chapter>
+  <chapter xml:id="volume">
+    <title>Volume</title>
+    <para>The Volume API allows you to manage volumes and snapshots
+      that can be used with the Compute API.</para>
+    <wadl:resources
+      href="os-volume-1.wadl"
+      xmlns:wadl="http://wadl.dev.java.net/2009/02"/>
+  </chapter>
+
+</book>

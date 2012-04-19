@@ -1,0 +1,212 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-04-13 10:38+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.xml:10(title)
+msgid "OpenStack APIs"
+msgstr ""
+
+#: index.xml:12(year)
+msgid "2010-2012"
+msgstr ""
+
+#: index.xml:19(title)
+msgid "OpenStack API Reference"
+msgstr ""
+
+#: index.xml:21(para)
+msgid "The OpenStack system has several key projects that are separate installations but can work together depending on your cloud needs: OpenStack Compute, OpenStack Object Storage, OpenStack Identity Service, and OpenStack Image Service."
+msgstr ""
+
+#: index.xml:26(para)
+msgid "This page covers the basics for working with your OpenStack cloud through the Compute API and Image API after authorizing with the Identity Service API. You can then build a cloud by launching images and assigning metadata to instances, all through an API. Refer to the <link href=\"http://docs.openstack.org/api/quick-start/content/\">API Quick Start Guide</link> for details about using the APIs referenced here, and go to <link href=\"http://docs.openstack.org/api/\">docs.openstack.org/api</link> for specifications of each API."
+msgstr ""
+
+#: index.xml:39(title)
+msgid "Identity"
+msgstr ""
+
+#: index.xml:40(para)
+msgid "With the Identity API, you obtain a token that lasts 24 hours so you can gain access to the Compute API. The version of the Identity API is 2.0."
+msgstr ""
+
+#: index.xml:51(title)
+msgid "Compute"
+msgstr ""
+
+#: index.xml:52(para)
+msgid "With the Compute API, you launch virtual machines based on the images uploaded to the system. You can reboot the server when needed, resize it larger or smaller, and connect to the server securely through SSH once it is started. The v1.1 API is identical to the v2 API."
+msgstr ""
+
+#: index.xml:62(title)
+msgid "Compute API Extensions"
+msgstr ""
+
+#: index.xml:63(para)
+msgid "An extension adds capabilities to an API beyond those defined in the core API. The introduction of new features, MIME types, actions, states, headers, parameters, and resources can all be accomplished by means of extensions to the core API. You can query the Compute API to find out which extensions are available with a GET request to v1.1/extensions."
+msgstr ""
+
+#: index.xml:70(title)
+msgid "Disk Config"
+msgstr ""
+
+#: index.xml:71(para)
+msgid "Extend servers and images with a diskConfig attribute."
+msgstr ""
+
+#: index.xml:77(title)
+msgid "Server Rescue"
+msgstr ""
+
+#: index.xml:78(para)
+msgid "Rescue and unrescue a server."
+msgstr ""
+
+#: index.xml:84(title)
+msgid "Server Console Output"
+msgstr ""
+
+#: index.xml:85(para)
+msgid "Get the output from a server's console log."
+msgstr ""
+
+#: index.xml:91(title)
+msgid "Server VNC Console"
+msgstr ""
+
+#: index.xml:92(para)
+msgid "Gain access to a VNC console for a specific server."
+msgstr ""
+
+#: index.xml:98(title)
+msgid "Server Start/Stop"
+msgstr ""
+
+#: index.xml:99(para)
+msgid "Start and stop a server."
+msgstr ""
+
+#: index.xml:105(title)
+msgid "Server Force Delete/Restore"
+msgstr ""
+
+#: index.xml:106(para)
+msgid "When Nova is deployed with deferred delete on, use these actions to restore or force the deletion of a server."
+msgstr ""
+
+#: index.xml:115(title)
+msgid "Floating IPs"
+msgstr ""
+
+#: index.xml:116(para)
+msgid "The Floating IPs extension enables assigning and allocation of floating IP addresses to instances running in an OpenStack cloud."
+msgstr ""
+
+#: index.xml:125(title)
+msgid "Floating IP Pools"
+msgstr ""
+
+#: index.xml:126(para)
+msgid "Manage groups of Floating IPs."
+msgstr ""
+
+#: index.xml:132(title)
+msgid "Floating IP DNS"
+msgstr ""
+
+#: index.xml:133(para)
+msgid "The Floating IP DNS extension provides an interface for managing DNS records associated with IP addresses allocated by the Floating Ips extension. Requests are dispatched to a DNS driver selected at startup."
+msgstr ""
+
+#: index.xml:144(title)
+msgid "Networks"
+msgstr ""
+
+#: index.xml:145(para)
+msgid "The Networks extension allows you to view and delete networks. It also provides an action to disassociate a network from a project if you are using vlan mode."
+msgstr ""
+
+#: index.xml:155(title)
+msgid "Scheduler Hints"
+msgstr ""
+
+#: index.xml:156(para)
+msgid "Provide information directly to the scheduler when creating a server."
+msgstr ""
+
+#: index.xml:164(title)
+msgid "Keypairs"
+msgstr ""
+
+#: index.xml:165(para)
+msgid "Generate, import and delete SSH keys.."
+msgstr ""
+
+#: index.xml:171(title)
+msgid "Security Groups"
+msgstr ""
+
+#: index.xml:172(para)
+msgid "Create, modify and delete security groups and rules."
+msgstr ""
+
+#: index.xml:178(title)
+msgid "Cloudpipe"
+msgstr ""
+
+#: index.xml:179(para)
+msgid "Manage virtual vpns for projects."
+msgstr ""
+
+#: index.xml:185(title)
+msgid "Hosts"
+msgstr ""
+
+#: index.xml:186(para)
+msgid "Manage physical hosts."
+msgstr ""
+
+#: index.xml:192(title)
+msgid "Flavor Management"
+msgstr ""
+
+#: index.xml:193(para)
+msgid "Create and delete flavors."
+msgstr ""
+
+#: index.xml:199(title)
+msgid "Flavors - Extra Data"
+msgstr ""
+
+#: index.xml:200(para)
+msgid "Allow extra attributes to be returned with flavor objects. This includes 'swap', 'rxtx_factor' and 'OS-FLV-EXT-DATA:ephemeral'."
+msgstr ""
+
+#: index.xml:210(title)
+msgid "Image"
+msgstr ""
+
+#: index.xml:211(para)
+msgid "With the Image API, you load images for use at launch time by the Compute API. Some cloud implementations do not expose this API and offer pre-tested images only. You can also assign metadata to images with this API."
+msgstr ""
+
+#: index.xml:220(title)
+msgid "Volume"
+msgstr ""
+
+#: index.xml:221(para)
+msgid "The Volume API allows you to manage volumes and snapshots that can be used with the Compute API."
+msgstr ""
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: index.xml:0(None)
+msgid "translator-credits"
+msgstr ""
+

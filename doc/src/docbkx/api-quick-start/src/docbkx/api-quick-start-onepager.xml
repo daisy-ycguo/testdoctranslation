@@ -1,0 +1,222 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-04-13 10:53+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: cli-uses.xml:7(title)
+msgid "Setting Up python-novaclient"
+msgstr ""
+
+#: cli-uses.xml:9(para)
+msgid "For more serious scripting work, you can use a client like the python-novaclient or openstack-compute clients. The python-novaclient implements the Compute 1.1 API while the openstack-compute client works against the Rackspace Cloud Servers public cloud which is the OpenStack Compute 1.0 API. You only need a username and password to use the python-novaclient tool."
+msgstr ""
+
+#: cli-uses.xml:10(para)
+msgid "Installing the python-novaclient gives you a <code>nova</code> shell command that enables Compute API interactions from the command line. You install the client, and then provide your username and password, set as environment variables for convenience, and then you can have the ability to send commands to your cloud on the command-line."
+msgstr ""
+
+#: cli-uses.xml:14(para)
+msgid "To install python-novaclient, grab the stable/nova version like so."
+msgstr ""
+
+#: cli-uses.xml:16(programlisting)
+#, no-wrap
+msgid "\n$ pip install -e git+https://github.com/openstack/python-novaclient.git#egg=python-novaclient\n    "
+msgstr ""
+
+#: cli-uses.xml:19(para)
+msgid "Now that you have installed the python-novaclient, confirm the installation by entering:"
+msgstr ""
+
+#: cli-uses.xml:19(programlisting)
+#, no-wrap
+msgid "\n$ nova help\n\nusage: nova [--debug] [--os_username OS_USERNAME] [--os_password OS_PASSWORD]\n            [--os_tenant_name OS_TENANT_NAME] [--os_auth_url OS_AUTH_URL]\n            [--os_region_name OS_REGION_NAME] [--service_type SERVICE_TYPE]\n            [--service_name SERVICE_NAME] [--endpoint_type ENDPOINT_TYPE]\n            [--version VERSION]\n            &lt;subcommand&gt; ...\n"
+msgstr ""
+
+#: cli-uses.xml:29(para)
+msgid "In return, you will get a listing of all the commands and parameters for the nova command line client. By setting up the required parameters as environment variables, you can fly through these commands on the command line. You can add --os_username on the nova command, or set them as environment variables. When using an OpenStack, you are supplied with an endpoint, which the nova client recognizes as the NOVA_URL."
+msgstr ""
+
+#: cli-uses.xml:33(programlisting)
+#, no-wrap
+msgid "\nexport OS_USERNAME=joecool\nexport OS_PASSWORD=coolword\nexport OS_TENANT_NAME=coolu\nexport OS_AUTH_URL=http://trystack.org:5000/v2.0\nexport NOVA_VERSION=1.1\n"
+msgstr ""
+
+#: cli-uses.xml:42(title)
+msgid "Listing Images"
+msgstr ""
+
+#: cli-uses.xml:47(programlisting)
+#, no-wrap
+msgid "\n$ nova image-list\n\n+----+-------------------------------------------------------+--------+\n| ID |                          Name                         | Status |\n+----+-------------------------------------------------------+--------+\n| 1  | aki-tty                                               | ACTIVE |\n| 2  | ari-tty                                               | ACTIVE |\n| 3  | ami-tty                                               | ACTIVE |\n| 6  | CentOS_5.4_x64                                        | ACTIVE |\n| 14 | maverick-kernel                                       | ACTIVE |\n| 15 | maverick                                              | ACTIVE |\n| 20 | ubuntu-kernel                                         | ACTIVE |\n| 21 | ubuntu-ramdisk                                        | ACTIVE |\n| 22 | ubuntu                                                | ACTIVE |\n| 24 | CentOS_5.6_x64_v5.7.14_Dev1                           | ACTIVE |\n+----+-------------------------------------------------------+--------+\n        "
+msgstr ""
+
+#: cli-uses.xml:42(para)
+msgid "Before you can go about the business of building your cloud, you want to know what images are available to you by asking the image service what kinds of configurations are available. The image service could be compared to iTunes for your cloud - you can view the playlist of images before using your favorite image to create a new instance in the cloud. To get the list of images, their names, status, and ID, use this command: <placeholder-1/>"
+msgstr ""
+
+#: cli-uses.xml:65(para)
+msgid "Next you need to know the relative sizes of each of these."
+msgstr ""
+
+#: cli-uses.xml:66(programlisting)
+#, no-wrap
+msgid "\n$ nova flavor-list\n        \n+----+-----------+-----------+------+----------+-------+------------+----------+\n| ID |    Name   | Memory_MB | Swap | Local_GB | VCPUs | RXTX_Quota | RXTX_Cap |\n+----+-----------+-----------+------+----------+-------+------------+----------+\n| 1  | m1.tiny   | 512       |      | 0        |       |            |          |\n| 2  | m1.small  | 2048      |      | 20       |       |            |          |\n| 3  | m1.medium | 4096      |      | 40       |       |            |          |\n| 4  | m1.large  | 8192      |      | 80       |       |            |          |\n| 5  | m1.xlarge | 16384     |      | 160      |       |            |          |\n| 89 | Boom      | 2         |      | 20       |       |            |          |\n+----+-----------+-----------+------+----------+-------+------------+----------+\n        \n    "
+msgstr ""
+
+#: cli-uses.xml:81(para)
+msgid "You can also narrow down the list by using grep to find only the CentOS images with a command like this:"
+msgstr ""
+
+#: cli-uses.xml:83(programlisting)
+#, no-wrap
+msgid "\n\n$ nova image-list | grep 'CentOS'\n\n| 6  | CentOS_5.4_x64                                        | ACTIVE |\n| 24 | CentOS_5.6_x64_v5.7.14_Dev1                           | ACTIVE |\n\n"
+msgstr ""
+
+#: cli-uses.xml:92(para)
+msgid "With the information about what is available to you, you can choose the combination of image and flavor to create your virtual servers and launch instances."
+msgstr ""
+
+#: cli-uses.xml:93(title)
+msgid "Launching Instances"
+msgstr ""
+
+#: cli-uses.xml:95(para)
+msgid "To launch a server, you choose an image you want to match up to a size, find the ID for the image and the ID for the flavor so you can size it, and create the command with the IDs. From the information we got previously, we know that an Ubuntu Maverick image has an ID of 15, and if you want to start small with about 2 GB of memory and 20 GB of disk space, you'd choose the m1.small flavor which has an ID of 2. Put those parameters in with the \"boot\" command and you can create a new virtual server."
+msgstr ""
+
+#: cli-uses.xml:99(programlisting)
+#, no-wrap
+msgid "\n $ nova boot --flavor=2 --image=15 testserver\n \n +-----------+--------------------------------------+\n|  Property |                Value                 |\n+-----------+--------------------------------------+\n| adminPass | ****************                     |\n| created   | 2011-09-01T21:40:41Z                 |\n| flavor    | m1.small                             |\n| hostId    |                                      |\n| id        | 1805                                 |\n| image     | maverick                             |\n| metadata  | {}                                   |\n| name      | testserver                           |\n| progress  | 0                                    |\n| status    | BUILD                                |\n| updated   | 2011-09-01T21:40:41Z                 |\n| uuid      | ce044452-f22e-4ea4-a3ec-d1cde80cf996 |\n+-----------+--------------------------------------+\n "
+msgstr ""
+
+#: cli-uses.xml:121(programlisting)
+#, no-wrap
+msgid "\n$ nova list\n+------+------------+--------+--------------------------------+\n|  ID  |    Name    | Status |            Networks            |\n+------+------------+--------+--------------------------------+\n| 1805 | testserver | ACTIVE | private=10.4.96.81             |\n+------+------------+--------+--------------------------------+\n            "
+msgstr ""
+
+#: cli-uses.xml:120(para)
+msgid "Now, you can view this server in your new cloud by using the nova list command:<placeholder-1/>"
+msgstr ""
+
+#: cli-uses.xml:130(para)
+msgid "There are three statuses you may see - ACTIVE, BUILDING, and UNKNOWN. The BUILDING status is transient and you likely will not see it. If you see UNKNOWN, run <code>nova list</code> again until it goes away."
+msgstr ""
+
+#: cli-uses.xml:131(para)
+msgid "To view all the information about a particular server, use nova show with the ID of the server that you got from the nova list command."
+msgstr ""
+
+#: cli-uses.xml:132(programlisting)
+#, no-wrap
+msgid "\n$ nova show 1805\n\n+-----------------+----------------------------------------------------------+\n|     Property    |                          Value                           |\n+-----------------+----------------------------------------------------------+\n| created         | 2011-09-01T21:40:41Z                                     |\n| flavor          | m1.small                                                 |\n| hostId          | 58a7430169aa42cde5ce2456b0cb5bb5ac1ab0703bab6420e8a49e6e |\n| id              | 1805                                                     |\n| image           | maverick                                                 |\n| metadata        | {}                                                       |\n| name            | testserver                                               |\n| private network | 10.4.96.81                                               |\n| progress        | 100                                                      |\n| status          | ACTIVE                                                   |\n| updated         | 2011-09-01T21:40:46Z                                     |\n| uuid            | ce044452-f22e-4ea4-a3ec-d1cde80cf996                     |\n+-----------------+----------------------------------------------------------+\n\n        "
+msgstr ""
+
+#: cli-uses.xml:158(programlisting)
+#, no-wrap
+msgid "$ nova boot testserver --meta description='Use for testing purposes' --meta creator=joecool"
+msgstr ""
+
+#: cli-uses.xml:153(para)
+msgid "You can now launch that image again, but add more information to the server when you boot it so that you can more easily identify it amongst your ever-growing elastic cloud. Use the -meta option with a key=value pair, where you can make up the string for both the key and the value. For example, you could add a description and also the creator of the server. <placeholder-1/>"
+msgstr ""
+
+#: api-quick-start-intro.xml:6(title)
+msgid "OpenStack API Quick Start"
+msgstr ""
+
+#: api-quick-start-intro.xml:7(para)
+msgid "The OpenStack system has several key projects that are separate installations but can work together depending on your cloud needs: OpenStack Compute, OpenStack Object Storage, OpenStack Identity Service, and OpenStack Image Store. With the TryStack OpenStack installation, the OpenStack Compute, OpenStack Identity, and OpenStack Image Store projects are all working together in the background of the installation."
+msgstr ""
+
+#: api-quick-start-intro.xml:16(title)
+msgid "OpenStack API Introduction"
+msgstr ""
+
+#: api-quick-start-intro.xml:17(para)
+msgid "This page covers the basics for talking to your OpenStack cloud through the Compute API after authorizing with the Identity Service API. You can then build a cloud by launching images and assigning metadata to instances, all through the API. For an API reference of all the possible commands, see the <link href=\"http://docs.openstack.org/api/openstack-compute/1.1/content/\">OpenStack Compute API 1.1 specification</link> and the <link href=\"http://docs.openstack.org/api/openstack-identity-service/2.0/content/\">Identity Service 2.0 specification</link> published at <link href=\"http://docs.openstack.org/api\">docs.openstack.org/api</link>."
+msgstr ""
+
+#: api-quick-start-intro.xml:32(title)
+msgid "Getting Credentials"
+msgstr ""
+
+#: api-quick-start-intro.xml:33(para)
+msgid "Credentials are a combination of your username, password, and what tenant (or project) your cloud is running under. You only need to generate an additional token if you are interacting with your cloud directly with API endpoints, and not with a client. Your cloud administrator can give you a username and a password as well as your tenant identifier so you can generate authorization tokens. You can also get the tenant ID from the Dashboard URLs, for example https://trystack.org/dash/296/images/ indicates a tenant ID of 296."
+msgstr ""
+
+#: api-quick-start-intro.xml:44(para)
+msgid "These tokens are typically good for 24 hours, and when the token expires, you will find out with a 401 (Unauthorized) error and can request another token programmatically. The general workflow goes something like this:"
+msgstr ""
+
+#: api-quick-start-intro.xml:51(para)
+msgid "Begin API requests by asking for an authorization token from the endpoint your cloud administrator gave you, typically http://hostname:port/v2.0/tokens. You send your username, password, and what group or account you are with (the \"tenant\" in auth-speak)."
+msgstr ""
+
+#: api-quick-start-intro.xml:57(programlisting)
+#, no-wrap
+msgid "curl -k -X 'POST' -v https://nova-api.trystack.org:5443/v2.0/tokens -d '{\"auth\":{\"passwordCredentials\":{\"username\": \"joecool\", \"password\":\"coolword\"}, \"tenantId\":\"5\"}}' -H 'Content-type: application/json'"
+msgstr ""
+
+#: api-quick-start-intro.xml:60(para)
+msgid "The server returns a response in which the 24-hours token is contained. Use that token to send API requests with the X-Auth-Token included as an header field."
+msgstr ""
+
+#: api-quick-start-intro.xml:64(programlisting)
+#, no-wrap
+msgid "curl -k -D - -H \"X-Auth-Token: 7d2f63fd-4dcc-4752-8e9b-1d08f989cc00\" -X 'GET' -v https://nova-api.trystack.org:9774/v1.1/296/extensions  -H 'Content-type: application/json' "
+msgstr ""
+
+#: api-quick-start-intro.xml:68(para)
+msgid "Repeatedly send API requests with that token in the x-auth-token header until either: 1) the job's done or 2) you get a 401 (Unauthorized) code in return."
+msgstr ""
+
+#: api-quick-start-intro.xml:74(para)
+msgid "Request a token again when you get a 401 response until the script's job is done."
+msgstr ""
+
+#: api-quick-start-intro.xml:81(programlisting)
+#, no-wrap
+msgid "\n$ curl -X 'POST' -v https://nova-api.trystack.org:5443/v2.0/tokens -d '{\"auth\":{\"passwordCredentials\":{\"username\": \"joecool\", \"password\":\"coolword\"}, \"tenantId\":\"5\"}}' -H 'Content-type: application/json'\n         "
+msgstr ""
+
+#: api-quick-start-intro.xml:79(para)
+msgid "For a typical OpenStack deployment running the Identity Service you can request a token with this command in cURL:<placeholder-1/>"
+msgstr ""
+
+#: api-quick-start-intro.xml:84(para)
+msgid "In return, you should get a 200 OK response with a token in the form of \"id\": \"cd427a33-bb4a-4079-a6d7-0ae148bdeda9\" and an expiration date 24 hours from now. Here's what it looks like:"
+msgstr ""
+
+#: api-quick-start-intro.xml:89(programlisting)
+#, no-wrap
+msgid "\n{\n    \"access\": {\n        \"serviceCatalog\": [\n            {\n                \"endpoints\": [\n                    {\n                        \"adminURL\": \"https://nova-api.trystack.org:9774/v1.1/1\", \n                        \"internalURL\": \"https://nova-api.trystack.org:9774/v1.1/1\", \n                        \"publicURL\": \"https://nova-api.trystack.org:9774/v1.1/1\", \n                        \"region\": \"RegionOne\"\n                    }\n                ], \n                \"name\": \"nova\", \n                \"type\": \"compute\"\n            }, \n            {\n                \"endpoints\": [\n                    {\n                        \"adminURL\": \"https://GLANCE_API_IS_NOT_DISCLOSED/v1.1/1\", \n                        \"internalURL\": \"https://GLANCE_API_IS_NOT_DISCLOSED/v1.1/1\", \n                        \"publicURL\": \"https://GLANCE_API_IS_NOT_DISCLOSED/v1.1/1\", \n                        \"region\": \"RegionOne\"\n                    }\n                ], \n                \"name\": \"glance\", \n                \"type\": \"image\"\n            }, \n            {\n                \"endpoints\": [\n                    {\n                        \"adminURL\": \"https://nova-api.trystack.org:5443/v2.0\", \n                        \"internalURL\": \"https://keystone.trystack.org:5000/v2.0\", \n                        \"publicURL\": \"https://keystone.trystack.org:5000/v2.0\", \n                        \"region\": \"RegionOne\"\n                    }\n                ], \n                \"name\": \"keystone\", \n                \"type\": \"identity\"\n            }\n        ], \n        \"token\": {\n            \"expires\": \"2012-02-15T19:32:21\", \n            \"id\": \"5df9d45d-d198-4222-9b4c-7a280aa35666\", \n            \"tenant\": {\n                \"id\": \"1\", \n                \"name\": \"admin\"\n            }\n        }, \n        \"user\": {\n            \"id\": \"14\", \n            \"name\": \"annegentle\", \n            \"roles\": [\n                {\n                    \"id\": \"2\", \n                    \"name\": \"Member\", \n                    \"tenantId\": \"1\"\n                }\n            ]\n        }\n    }\n}\n\n    "
+msgstr ""
+
+#: api-quick-start-intro.xml:155(title)
+msgid "Sending Requests to the API"
+msgstr ""
+
+#: api-quick-start-intro.xml:156(para)
+msgid "You have a couple of options for sending requests to OpenStack through an API. Developers and testers may prefer to use cURL, the command-line tool from <link href=\"http://curl.haxx.se/\">http://curl.haxx.se/</link>. With cURL you can send HTTP requests and receive responses back from the command line."
+msgstr ""
+
+#: api-quick-start-intro.xml:163(para)
+msgid "If you like to use a more graphical interface, the REST client for Firefox also works well for testing and trying out commands, see <link href=\"https://addons.mozilla.org/en-US/firefox/addon/restclient/\">https://addons.mozilla.org/en-US/firefox/addon/restclient/</link>. You can also download and install rest-client, a Java application to test RESTful web services, from <link href=\"http://code.google.com/p/rest-client/\">http://code.google.com/p/rest-client/</link>."
+msgstr ""
+
+#: api-quick-start-intro.xml:172(para)
+msgid "You need to generate a token as shown above if you use cURL or a REST client."
+msgstr ""
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: api-quick-start-intro.xml:0(None)
+msgid "translator-credits"
+msgstr ""
+
